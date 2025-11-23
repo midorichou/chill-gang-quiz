@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>你是 Chill Gang 喜劇拼盤中的哪位演員？</title>
+    <title>你是 Chill Gang 幫喬飛的播放清單中哪位演員？</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         /* ==================== 顏色變數定義 ==================== */
         :root {
-            --primary-bg-dark: #263343; /* 主背景深藍色 */
-            --secondary-bg-light: #F0EAD6; /* 次要背景淺黃色 */
-            --button-accent: #1DB954; /* Spotify 螢光綠 */
-            --text-dark: #191414; /* 深灰色文本 */
+            --primary-bg-dark: #263343; 
+            --secondary-bg-light: #F0EAD6; 
+            --button-accent: #1DB954; 
+            --text-dark: #191414; 
             --text-light: #ffffff;
-            --card-bg: #344759; /* 卡片背景色 */
+            --card-bg: #344759; 
             --border-light: rgba(255, 255, 255, 0.2);
         }
 
@@ -41,11 +41,10 @@
             overflow: hidden;
             border: 1px solid var(--border-light);
         }
-        /* 隱藏未啟用的頁面 */
         .page {
             padding: 40px;
             display: none; 
-            box-sizing: border-box; 
+            box-sizing: border-box;
         }
         .page.active {
             display: block;
@@ -80,10 +79,6 @@
             background-color: #1ed760; 
             transform: translateY(-2px);
         }
-        .btn:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
 
         /* ==================== 首頁樣式 (Homepage) ==================== */
         #homepage {
@@ -93,13 +88,14 @@
             padding: 40px; 
             box-sizing: border-box;
         }
-        /* ***** 修正：首頁圖片路徑使用同層級相對路徑 (images/檔名.jpg) ***** */
+        /* 首頁圖片樣式：路徑確認，使用 contain 確保不裁切 */
         .hero-image-homepage {
             width: 100%;
-            height: 350px; 
+            height: 400px; 
             background-color: var(--card-bg); 
-            background-image: url('images/ChillGang_front_image.jpg'); 
-            background-size: cover;
+            background-image: url('images/ChillGang_front_image.jpg'); /* 路徑：images/ChillGang_front_image.jpg */
+            background-size: contain; 
+            background-repeat: no-repeat;
             background-position: center;
             border-top-left-radius: 12px;
             border-top-right-radius: 12px;
@@ -111,10 +107,7 @@
             font-size: 1.5em;
             font-weight: bold;
         }
-        .hero-image-homepage:not([style*="background-image"]) {
-            content: "【請在此替換首頁總覽圖片】";
-        }
-
+        /* ** 文案修正 2：首頁大標題 ** */
         #homepage h1 {
             font-size: 2.2em;
             margin-top: 0;
@@ -127,72 +120,8 @@
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 40px;
         }
-
-        /* ==================== 問題頁樣式 (略) ==================== */
-        .question-card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-        .question-card p {
-            font-weight: 500;
-            font-size: 1.2em;
-            color: var(--secondary-bg-light);
-            margin-top: 0;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-        .option-label {
-            display: block;
-            margin: 12px 0;
-            padding: 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.2s ease, border-color 0.2s ease;
-            background-color: #4b5a6d; 
-            border: 1px solid transparent;
-            color: var(--text-light);
-            font-weight: 400;
-        }
-        .option-label:hover {
-            background-color: #5c6e80;
-        }
-        input[type="radio"] {
-            margin-right: 15px;
-            accent-color: var(--button-accent); 
-            transform: scale(1.2); 
-            vertical-align: middle;
-        }
-        input[type="radio"]:checked + span {
-            font-weight: 500;
-            color: var(--secondary-bg-light);
-        }
-        .option-label input[type="radio"]:checked {
-            border-color: var(--button-accent); 
-        }
-        /* 答題進度條 (略) */
-        #progress-bar-container {
-            height: 12px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 6px;
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-        #progress-bar {
-            height: 100%;
-            width: 0%;
-            background-color: var(--button-accent);
-            border-radius: 6px;
-            transition: width 0.4s ease-in-out;
-        }
-
+        
         /* ==================== 結果頁樣式 (Result Page) ==================== */
-        #result-page h2 {
-            font-size: 2em;
-            margin-bottom: 15px;
-        }
         #final-actor {
             font-size: 2.8em; 
             font-weight: 700;
@@ -201,25 +130,19 @@
             margin-bottom: 25px;
             text-shadow: 0 0 10px rgba(29, 185, 84, 0.4);
         }
-        /* 修正一：結果頁圖片填滿寬度 */
+        /* 結果圖片樣式：寬度 100% 填滿 */
         .result-image-display {
-            max-width: 700px; /* 擴展至最大容器寬度 */
-            width: 100%; /* 佔滿父容器寬度 */
+            max-width: 600px;
+            width: 100%; 
             height: 450px; 
             background-color: var(--card-bg); 
             background-size: contain; 
             background-repeat: no-repeat; 
             background-position: center; 
-            border-radius: 10px;
-            margin: 0 auto 25px auto; /* 移除左右間距，保持底部間距 */
+            border-radius: 0; 
+            margin: 0 auto 25px auto; 
             display: block;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.5em;
-            font-weight: bold;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .result-image-display:not([style*="background-image"]) {
-            content: "【請在此替換演員結果圖片】";
         }
         #final-text {
             font-size: 1.15em;
@@ -227,10 +150,10 @@
             text-align: center;
             color: rgba(255, 255, 255, 0.85);
             margin-bottom: 35px;
-            white-space: pre-wrap; 
+            white-space: pre-wrap;
         }
 
-        /* 修正二：新增文案區塊樣式 */
+        /* CTA 文案區塊美化 */
         #cta-text-content {
             background-color: var(--card-bg); 
             border-radius: 10px;
@@ -239,13 +162,14 @@
             max-width: 600px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
+        /* 調整文案行距及對齊 */
         #cta-text-content p {
             font-size: 1.05em;
-            line-height: 1.8;
+            line-height: 1.6; 
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 20px;
             white-space: pre-wrap;
-            text-align: justify; /* 讓文案更整齊 */
+            text-align: left; 
         }
         #cta-text-content .cast-list {
             margin-top: 20px;
@@ -263,31 +187,28 @@
             font-size: 1.1em;
             text-align: center;
         }
-        #cta-text-content .cast-item {
-            margin: 5px 0;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .link-container {
-            margin-top: 30px;
-            text-align: center;
-        }
-        .link-container a {
-            color: var(--button-accent);
-            text-decoration: none;
-            font-weight: bold;
-            border: 2px solid var(--button-accent);
-            padding: 12px 25px;
+        
+        /* CTA 圖片連結區塊：路徑確認 */
+        .cta-image-link {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 35px auto 0 auto; 
             border-radius: 8px;
-            transition: background-color 0.3s, color 0.3s, transform 0.2s;
-            display: inline-block; 
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease;
         }
-        .link-container a:hover {
-            background-color: var(--button-accent);
-            color: var(--text-dark);
-            transform: translateY(-2px);
+        .cta-image-link img {
+            display: block;
+            width: 100%;
+            height: auto;
         }
-
+        
+        .link-container {
+            display: none; 
+        }
+        
         .credits {
             text-align: center;
             color: rgba(255, 255, 255, 0.5);
@@ -304,7 +225,7 @@
         <div class="hero-image-homepage">
             </div>
         <div class="homepage-content">
-            <h1>你是 Chill Gang 喜劇拼盤中的哪位演員？</h1>
+            <h1>你是 Chill Gang 幫喬飛的播放清單中哪位演員？</h1>
             <p>這是一個為您量身打造的專屬測驗，透過 5 個情境題，找出你的隱藏喜劇人格，揭曉你是最 Chill 的哪位演員或組合！準備好進入你的喜劇人生了嗎？</p>
             <button class="btn" onclick="startQuiz()">開始測驗！</button>
         </div>
@@ -324,10 +245,8 @@
     <div id="result-page" class="page">
         <h2>你的 Chill Gang 喜劇人格是...</h2>
         <div id="final-actor"></div>
-        
         <div id="result-image-display" class="result-image-display">
             </div>
-            
         <div id="final-text"></div>
         
         <div id="cta-text-content">
@@ -355,6 +274,10 @@
             </div>
         </div>
         
+        <a id="cta-link-image" class="cta-image-link" href="https://str.network/PUxNW" target="_blank" rel="noopener noreferrer">
+            <img id="cta-image" src="images/ChillGang_Result_Z_CTA.jpg" alt="前往觀看 Chill Gang 幫喬飛的播放清單">
+        </a>
+        
         <div class="link-container">
             <a id="result-link" href="#" target="_blank" rel="noopener noreferrer">前往觀看 Ta 的表演！</a>
         </div>
@@ -369,7 +292,7 @@
 </div>
 
 <script>
-    // ==================== 數據配置 ====================
+    // ==================== 數據配置 (略) ====================
     const QUIZ_DATA = [
         {
             q: "Q1. 早上出門時，你發現忘了帶耳機，會怎麼辦？",
@@ -418,7 +341,7 @@
         }
     ];
 
-    /* 修正三：結果圖片路徑修正為 images/ (同層級相對路徑) */
+    /* 結果圖片路徑使用 images/ (同層級相對路徑) */
     const RESULTS_MAP = {
         "R1": {
             actor: "哈姆",
@@ -464,12 +387,11 @@
         }
     };
 
-    // ==================== 狀態管理 (略) ====================
+    // ==================== 狀態管理 & 函數 (略) ====================
     let currentQuestionIndex = 0;
     let scores = { "R1": 0, "R2": 0, "R3": 0, "R4": 0, "R5": 0, "R6": 0, "R7": 0 };
     const answers = new Array(QUIZ_DATA.length).fill(null); 
 
-    // ==================== 頁面切換函數 (略) ====================
     function switchPage(pageId) {
         document.querySelectorAll('.page').forEach(page => {
             page.classList.remove('active');
@@ -478,39 +400,32 @@
         window.scrollTo({ top: 0, behavior: 'smooth' }); 
     }
 
-    // ==================== 測驗啟動與重置 (略) ====================
     function startQuiz() {
-        // 重置狀態
         currentQuestionIndex = 0;
         scores = { "R1": 0, "R2": 0, "R3": 0, "R4": 0, "R5": 0, "R6": 0, "R7": 0 };
         answers.fill(null);
         
-        // 切換到問題頁並載入第一題
         switchPage('quiz-page');
         loadQuestion(currentQuestionIndex);
         updateProgress();
     }
 
     function resetQuiz() {
-        // 回到首頁
         switchPage('homepage');
-        // 清除任何舊的結果顯示
         document.getElementById('final-actor').innerText = '';
         document.getElementById('final-text').innerText = '';
         document.getElementById('result-image-display').style.backgroundImage = '';
+        document.getElementById('cta-link-image').style.display = 'none'; 
     }
 
-    // ==================== 問題處理 (略) ====================
     function loadQuestion(index) {
         const questionData = QUIZ_DATA[index];
         const form = document.getElementById('quiz-form');
         form.innerHTML = ''; 
 
-        // 渲染題目標題
         let html = `<div class="question-card">
                         <p>${questionData.q}</p>`;
 
-        // 渲染選項
         questionData.options.forEach((option, i) => {
             const isChecked = answers[index] && answers[index].includes(option.score.join(','));
             html += `<label class="option-label">
@@ -523,7 +438,6 @@
         
         form.innerHTML = html;
         
-        // 檢查是否是最後一題，以切換按鈕
         if (index === QUIZ_DATA.length - 1) {
             document.getElementById('next-btn').style.display = 'none';
             document.getElementById('submit-btn').style.display = 'block';
@@ -555,14 +469,11 @@
         document.getElementById('progress-bar').style.width = `${progress}%`;
     }
 
-    // ==================== 結果計算與顯示 (略) ====================
     function calculateFinalResult() {
-        // 重設分數
         for (const key in scores) {
             scores[key] = 0;
         }
 
-        // 累計所有答案的積分
         answers.forEach(selectedValue => {
             if (selectedValue) {
                 const scoreKeys = selectedValue.split(',');
@@ -574,7 +485,6 @@
             }
         });
 
-        // 找出最高分
         let maxScore = -1;
         let finalResultKey = 'R1'; 
         let tieKeys = []; 
@@ -589,7 +499,6 @@
             }
         }
         
-        // 如果平手，可以選擇隨機一個，這裡簡單取第一個
         if (tieKeys.length > 1) {
             finalResultKey = tieKeys[Math.floor(Math.random() * tieKeys.length)];
         }
@@ -605,30 +514,27 @@
         
         const result = calculateFinalResult();
 
-        // 更新結果頁內容
         document.getElementById('final-actor').innerText = result.actor;
-        // 修正：這裡只放結果文本，文案已移到 #cta-text-content 區塊
         document.getElementById('final-text').innerText = `🎉 恭喜你！你的喜劇人格是：【${result.actor}】\n\n${result.text}`;
         
-        // 更新圖片
+        // 更新結果圖片 (個別演員圖)
         const resultImageDiv = document.getElementById('result-image-display');
         resultImageDiv.style.backgroundImage = `url('${result.image}')`;
         resultImageDiv.innerHTML = ''; 
-
-        // 更新連結
+        
+        // 顯示 CTA 圖片連結
+        document.getElementById('cta-link-image').style.display = 'block';
+        
+        // 更新 Ta 的表演連結 (用於頁面底部按鈕，雖然現在隱藏了)
         const resultLink = document.getElementById('result-link');
         resultLink.href = result.link;
-        resultLink.innerText = `前往觀看 ${result.actor} 的表演！`;
 
         switchPage('result-page');
     }
 
-    // 啟動頁面，預設顯示首頁
     document.addEventListener('DOMContentLoaded', () => {
-        // 確保初始時只有首頁是 active
         document.getElementById('homepage').classList.add('active');
-        document.getElementById('quiz-page').classList.remove('active');
-        document.getElementById('result-page').classList.remove('active');
+        document.getElementById('cta-link-image').style.display = 'none';
     });
 </script>
 
