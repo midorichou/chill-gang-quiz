@@ -17,6 +17,7 @@
             --text-light: #ffffff;
             --card-bg: #344759; /* 卡片背景色 */
             --border-light: rgba(255, 255, 255, 0.2);
+            --text-muted-gray: #B0B0B0; /* 柔和的灰色，用於演出陣容 */
         }
 
         /* ==================== 基礎與通用樣式 ==================== */
@@ -225,22 +226,27 @@
         /* 調整文案行距及對齊 */
         #cta-text-content p {
             font-size: 1.05em;
-            line-height: 1.6; /* 行距調小 */
+            line-height: 1.6; 
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 20px;
             white-space: pre-wrap;
-            text-align: left; /* 靠左對齊 */
+            text-align: left; 
         }
-        /* ** 修正區塊：將演出陣容列表置中 ** */
+        /* 演出陣容區塊 (外層) - 使用 Flexbox 確保內容置中 */
         #cta-text-content .cast-list {
             margin-top: 20px;
             border-top: 1px dashed rgba(255, 255, 255, 0.3);
             padding-top: 20px;
-            text-align: center; /* ** 修正: 置中 ** */
             font-size: 0.95em;
             line-height: 1.6;
+            
+            /* ** 修正：使用 Flexbox 實現置中對齊 ** */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 讓內容在主軸(垂直)方向上置中 */
+            text-align: center; /* 備用，確保行內內容置中 */
         }
-        /* 確保標題置中且顏色正確 */
+        /* 演出陣容標題 */
         #cta-text-content .cast-list strong {
             color: var(--secondary-bg-light);
             font-weight: 700;
@@ -249,10 +255,10 @@
             font-size: 1.1em;
             text-align: center;
         }
-        /* ** 修正區塊：將演出陣容文字淺色化 ** */
+        /* 修正區塊：演出陣容列表文字顏色設為灰色 */
         #cta-text-content .cast-list .cast-item {
-             color: var(--text-light); /* ** 修正: 淺色 (白色) ** */
-             margin-bottom: 5px; /* 增加行距，美化置中後的排版 */
+             color: var(--text-muted-gray); /* 修正: 柔和的灰色 */
+             margin-bottom: 5px; 
         }
         
         /* CTA 圖片連結區塊：路徑確認 images/ChillGang_Result_Z_CTA.jpg */
@@ -332,16 +338,16 @@
                 看一群喜劇嘻皮，成就當代最龐克的喜嘻級喜劇表演
                 這次，你該加入了吧？😎
             </p>
-            <div class="cta-text-content">
+            <div class="cast-list">
                 <strong>⟡ 演出陣容 ⟡</strong>
-                <div class="cta-text-content">音樂喜劇 ★ 哈姆</div>
-                <div class="cta-text-content">單口喜劇 ★ Boss</div>
-                <div class="cta-text-content">單口喜劇 ★ 喬瑟夫</div>
-                <div class="cta-text-content">魔法朋友喜劇演出 ★ 安妮與古德</div>
-                <div class="cta-text-content">漫才 ★ 菜冠雙頭</div>
-                <div class="cta-text-content">漫才 ★ 喬瑟夫&阿量</div>
-                <div class="cta-text-content">漫才 ★ 喬瑟夫&美麗本人</div>
-                <div class="cta-text-content" style="margin-top: 15px; font-weight: 500;">｜薩泰爾娛樂影音平台 獨家上架｜</div>
+                <div class="cast-item">音樂喜劇 ★ 哈姆</div>
+                <div class="cast-item">單口喜劇 ★ Boss</div>
+                <div class="cast-item">單口喜劇 ★ 喬瑟夫</div>
+                <div class="cast-item">魔法朋友喜劇演出 ★ 安妮與古德</div>
+                <div class="cast-item">漫才 ★ 菜冠雙頭</div>
+                <div class="cast-item">漫才 ★ 喬瑟夫&阿量</div>
+                <div class="cast-item">漫才 ★ 喬瑟夫&美麗本人</div>
+                <div class="cast-item" style="margin-top: 15px; font-weight: 500;">｜薩泰爾娛樂影音平台 獨家上架｜</div>
             </div>
         </div>
         
