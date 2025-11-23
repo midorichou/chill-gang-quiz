@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>你是 Chill Gang 喜劇拼盤中的哪位演員？</title>
+    <title>你是 Chill Gang 幫喬飛的播放清單中哪位演員？</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -98,7 +98,8 @@
             width: 100%;
             height: 350px; 
             background-color: var(--card-bg); 
-            background-image: url('../images/ChillGang_front_image.jpg'); /* 修正路徑與檔名 */
+            /* ***** 修正路徑: 從 ../images/ 改為 ./images/ (適用於 HTML 在 05_Chill_Gang_Quiz 資料夾內) ***** */
+            background-image: url('./images/ChillGang_front_image.jpg'); 
             background-size: cover;
             background-position: center;
             border-top-left-radius: 12px;
@@ -267,7 +268,7 @@
         <div class="hero-image-homepage">
             </div>
         <div class="homepage-content">
-            <h1>你是 Chill Gang 喜劇拼盤中的哪位演員？</h1>
+            <h1>你是 Chill Gang 幫喬飛的播放清單中哪位演員？</h1>
             <p>這是一個為您量身打造的專屬測驗，透過 5 個情境題，找出你的隱藏喜劇人格，揭曉你是最 Chill 的哪位演員或組合！準備好進入你的喜劇人生了嗎？</p>
             <button class="btn" onclick="startQuiz()">開始測驗！</button>
         </div>
@@ -354,49 +355,49 @@
         }
     ];
 
-    /* 修正三：結果圖片路徑修正為 ../images/ */
+    /* 修正三：結果圖片路徑修正為 ./images/ */
     const RESULTS_MAP = {
         "R1": {
             actor: "哈姆",
             text: "我聽人講話會睡著，只好用唱的了",
             link: "https://youtube.com/shorts/vQM3z7igFAI?si=xDBCH32I_taWvngn", 
-            image: "../images/ChillGang_Result_A.jpg" 
+            image: "./images/ChillGang_Result_A.jpg" 
         },
         "R2": {
             actor: "Boss",
             text: "超級大直男必聽！救你一命",
             link: "https://youtube.com/shorts/bNHQZhYI17o?si=9C54iSG8kJAZAKOG", 
-            image: "../images/ChillGang_Result_B.jpg" 
+            image: "./images/ChillGang_Result_B.jpg" 
         },
         "R3": {
             actor: "喬瑟夫",
             text: "孤僻的富二代，開車就是為了躲避社交的",
             link: "https://youtube.com/shorts/PP2NI9GBAsA?si=UR_FLyQAEvp3kiKx", 
-            image: "../images/ChillGang_Result_C.jpg" 
+            image: "./images/ChillGang_Result_C.jpg" 
         },
         "R4": {
             actor: "安妮與古德",
             text: "我朋友都說我很吵，只好給你更吵的",
             link: "https://youtube.com/shorts/yz8ePD9wTBI?si=-GHGAt23vAQR9JWT", 
-            image: "../images/ChillGang_Result_D.jpg" 
+            image: "./images/ChillGang_Result_D.jpg" 
         },
         "R5": {
             actor: "菜冠雙頭",
             text: "我是健身仔但沒人相信，現場脫給你看",
             link: "https://youtube.com/shorts/frvc_dCQvQU?si=RrjxwV00oDAOnYA_", 
-            image: "../images/ChillGang_Result_E.jpg" 
+            image: "./images/ChillGang_Result_E.jpg" 
         },
         "R6": {
             actor: "喬瑟夫&阿量",
             text: "看不出是 I 人還是外星人的",
             link: "https://youtube.com/shorts/9vr7uMh1bcQ?si=iiRVz7BIlpaiV7C8", 
-            image: "../images/ChillGang_Result_F.jpg" 
+            image: "./images/ChillGang_Result_F.jpg" 
         },
         "R7": {
             actor: "喬瑟夫&美麗本人",
             text: "不喜歡照邏輯做事，人生越看越荒謬",
             link: "https://youtube.com/shorts/ZcoQyislCPw?si=i-mGPGJWumS71bkO", 
-            image: "../images/ChillGang_Result_G.jpg" 
+            image: "./images/ChillGang_Result_G.jpg" 
         }
     };
 
