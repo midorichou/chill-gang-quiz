@@ -122,7 +122,6 @@
         }
 
         /* ==================== 問題頁樣式 (Quiz Page) ==================== */
-        /* ** 修正：恢復選項卡片樣式 ** */
         .question-card {
             background-color: var(--card-bg);
             border-radius: 10px;
@@ -194,7 +193,7 @@
         /* 結果圖片樣式：寬度 100% 填滿 */
         .result-image-display {
             max-width: 600px;
-            width: 100%; /* 佔滿父容器寬度，移除左右邊距 */
+            width: 100%; 
             height: 450px; 
             background-color: var(--card-bg); 
             background-size: contain; 
@@ -232,14 +231,16 @@
             white-space: pre-wrap;
             text-align: left; /* 靠左對齊 */
         }
+        /* ** 修正區塊：將演出陣容列表置中 ** */
         #cta-text-content .cast-list {
             margin-top: 20px;
             border-top: 1px dashed rgba(255, 255, 255, 0.3);
             padding-top: 20px;
-            text-align: left;
+            text-align: center; /* ** 修正: 置中 ** */
             font-size: 0.95em;
             line-height: 1.6;
         }
+        /* 確保標題置中且顏色正確 */
         #cta-text-content .cast-list strong {
             color: var(--secondary-bg-light);
             font-weight: 700;
@@ -247,6 +248,11 @@
             margin-bottom: 10px;
             font-size: 1.1em;
             text-align: center;
+        }
+        /* ** 修正區塊：將演出陣容文字淺色化 ** */
+        #cta-text-content .cast-list .cast-item {
+             color: var(--text-light); /* ** 修正: 淺色 (白色) ** */
+             margin-bottom: 5px; /* 增加行距，美化置中後的排版 */
         }
         
         /* CTA 圖片連結區塊：路徑確認 images/ChillGang_Result_Z_CTA.jpg */
@@ -335,7 +341,7 @@
                 <div class="cast-item">漫才 ★ 菜冠雙頭</div>
                 <div class="cast-item">漫才 ★ 喬瑟夫&阿量</div>
                 <div class="cast-item">漫才 ★ 喬瑟夫&美麗本人</div>
-                <div class="cast-item" style="margin-top: 15px; font-weight: 500; color: #fff;">｜薩泰爾娛樂影音平台 獨家上架｜</div>
+                <div class="cast-item" style="margin-top: 15px; font-weight: 500;">｜薩泰爾娛樂影音平台 獨家上架｜</div>
             </div>
         </div>
         
