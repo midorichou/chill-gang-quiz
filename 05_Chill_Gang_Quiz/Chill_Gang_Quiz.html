@@ -10,12 +10,12 @@
     <style>
         /* ==================== 顏色變數定義 ==================== */
         :root {
-            --primary-bg-dark: #263343; 
-            --secondary-bg-light: #F0EAD6; 
-            --button-accent: #1DB954; 
-            --text-dark: #191414; 
+            --primary-bg-dark: #263343; /* 主背景深藍色 */
+            --secondary-bg-light: #F0EAD6; /* 次要背景淺黃色 */
+            --button-accent: #1DB954; /* Spotify 螢光綠 */
+            --text-dark: #191414; /* 深灰色文本 */
             --text-light: #ffffff;
-            --card-bg: #344759; 
+            --card-bg: #344759; /* 卡片背景色 */
             --border-light: rgba(255, 255, 255, 0.2);
         }
 
@@ -107,7 +107,7 @@
             font-size: 1.5em;
             font-weight: bold;
         }
-        /* ** 文案修正 2：首頁大標題 ** */
+        /* 文案修正：首頁大標題 */
         #homepage h1 {
             font-size: 2.2em;
             margin-top: 0;
@@ -120,7 +120,68 @@
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 40px;
         }
-        
+
+        /* ==================== 問題頁樣式 (Quiz Page) ==================== */
+        /* ** 修正：恢復選項卡片樣式 ** */
+        .question-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .question-card p {
+            font-weight: 500;
+            font-size: 1.2em;
+            color: var(--secondary-bg-light);
+            margin-top: 0;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .option-label {
+            display: block;
+            margin: 12px 0;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            background-color: #4b5a6d; /* 選項背景色 */
+            border: 1px solid transparent;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+        .option-label:hover {
+            background-color: #5c6e80;
+        }
+        input[type="radio"] {
+            margin-right: 15px;
+            accent-color: var(--button-accent); /* 高亮顏色 */
+            transform: scale(1.2); /* 讓選框大一點 */
+            vertical-align: middle;
+        }
+        input[type="radio"]:checked + span {
+            font-weight: 500;
+            color: var(--secondary-bg-light);
+        }
+        .option-label input[type="radio"]:checked {
+            border-color: var(--button-accent); /* 選中時的邊框 */
+        }
+        /* 答題進度條 */
+        #progress-bar-container {
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: var(--button-accent);
+            border-radius: 6px;
+            transition: width 0.4s ease-in-out;
+        }
+
         /* ==================== 結果頁樣式 (Result Page) ==================== */
         #final-actor {
             font-size: 2.8em; 
@@ -133,7 +194,7 @@
         /* 結果圖片樣式：寬度 100% 填滿 */
         .result-image-display {
             max-width: 600px;
-            width: 100%; 
+            width: 100%; /* 佔滿父容器寬度，移除左右邊距 */
             height: 450px; 
             background-color: var(--card-bg); 
             background-size: contain; 
@@ -153,7 +214,7 @@
             white-space: pre-wrap;
         }
 
-        /* CTA 文案區塊美化 */
+        /* 文案區塊美化 */
         #cta-text-content {
             background-color: var(--card-bg); 
             border-radius: 10px;
@@ -165,11 +226,11 @@
         /* 調整文案行距及對齊 */
         #cta-text-content p {
             font-size: 1.05em;
-            line-height: 1.6; 
+            line-height: 1.6; /* 行距調小 */
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 20px;
             white-space: pre-wrap;
-            text-align: left; 
+            text-align: left; /* 靠左對齊 */
         }
         #cta-text-content .cast-list {
             margin-top: 20px;
@@ -188,7 +249,7 @@
             text-align: center;
         }
         
-        /* CTA 圖片連結區塊：路徑確認 */
+        /* CTA 圖片連結區塊：路徑確認 images/ChillGang_Result_Z_CTA.jpg */
         .cta-image-link {
             display: block;
             width: 100%;
@@ -198,6 +259,10 @@
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: transform 0.2s ease;
+        }
+        .cta-image-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
         }
         .cta-image-link img {
             display: block;
@@ -341,7 +406,7 @@
         }
     ];
 
-    /* 結果圖片路徑使用 images/ (同層級相對路徑) */
+    /* 確保圖片路徑使用 images/ (同層級相對路徑) */
     const RESULTS_MAP = {
         "R1": {
             actor: "哈姆",
@@ -415,6 +480,7 @@
         document.getElementById('final-actor').innerText = '';
         document.getElementById('final-text').innerText = '';
         document.getElementById('result-image-display').style.backgroundImage = '';
+        // 確保 CTA 連結區塊隱藏
         document.getElementById('cta-link-image').style.display = 'none'; 
     }
 
@@ -525,7 +591,7 @@
         // 顯示 CTA 圖片連結
         document.getElementById('cta-link-image').style.display = 'block';
         
-        // 更新 Ta 的表演連結 (用於頁面底部按鈕，雖然現在隱藏了)
+        // 更新 Ta 的表演連結 (已隱藏，但仍保留數據更新)
         const resultLink = document.getElementById('result-link');
         resultLink.href = result.link;
 
