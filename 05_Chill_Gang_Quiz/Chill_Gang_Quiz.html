@@ -223,15 +223,28 @@
             max-width: 600px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-        /* 調整文案行距及對齊 */
-        #cta-text-content p {
+        
+        /* 1. 桌面版文案 (預設顯示) */
+        #cta-text-content p.cta-text-desktop {
+            display: block; /* 預設顯示 */
+            text-align: left; /* 預設左對齊 */
             font-size: 1.05em;
             line-height: 1.6; 
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 20px;
             white-space: pre-wrap;
-            text-align: left; 
         }
+
+        /* 2. 手機版文案 (預設隱藏) */
+        #cta-text-content p.cta-text-mobile {
+            display: none; /* 預設隱藏 */
+            line-height: 1.5; /* 略緊的行距 */
+            font-size: 1em;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            white-space: pre-wrap; /* 確保換行生效 */
+        }
+        
         /* 演出陣容區塊 (外層) - Flexbox 置中 */
         #cta-text-content .cast-list {
             margin-top: 20px;
@@ -311,7 +324,7 @@
             }
             .hero-image-homepage {
                 height: 300px; /* 縮小圖片高度 */
-                /* ** 修正: 替換成手機專用圖片 ** */
+                /* 修正: 替換成手機專用圖片 */
                 background-image: url('images/ChillGang_front_image_phone.jpg'); 
                 border-top-left-radius: 0;
                 border-top-right-radius: 0;
@@ -358,9 +371,18 @@
                 padding: 20px;
                 margin-bottom: 25px;
             }
-            #cta-text-content p {
-                font-size: 1em; /* 縮小 CTA 區塊內文 */
+            
+            /* ** 關鍵修正：手機版切換文案顯示與置中 ** */
+            p.cta-text-desktop {
+                display: none !important; /* 隱藏桌面版文案 */
             }
+            p.cta-text-mobile {
+                display: block !important; /* 顯示手機版文案 */
+                text-align: center; /* 手機版文案置中 */
+                font-size: 1em; /* 繼承手機字體大小 */
+            }
+            /* ** 修正結束 ** */
+
             .btn {
                 padding: 12px; /* 縮小按鈕高度 */
                 font-size: 1em;
@@ -401,7 +423,7 @@
         <div id="final-text"></div>
         
         <div id="cta-text-content">
-            <p>
+            <p class="cta-text-desktop">
                 受夠了庸俗的商業喜劇秀？
                 《Chill Gang 幫喬飛的播放清單》龐克上架！
                 
@@ -412,6 +434,23 @@
                 看一群喜劇嘻皮，成就當代最龐克的喜嘻級喜劇表演
                 這次，你該加入了吧？😎
             </p>
+
+            <p class="cta-text-mobile">
+受夠了庸俗的商業喜劇秀？
+《Chill Gang幫喬飛的播放清單》
+龐克上架！
+
+薩泰爾最叛逆的喜劇演員喬瑟夫，
+一場最熱血、最浪漫、最爆笑的
+喜劇拼盤秀！
+
+這不只是拼盤秀，
+更是一場有品味的現場喜劇
+看一群喜劇嘻皮，
+成就當代最龐克的喜嘻級喜劇表演
+這次，你該加入了吧？😎
+            </p>
+
             <div class="cast-list">
                 <strong>⟡ 演出陣容 ⟡</strong>
                 <div class="cast-item">音樂喜劇 ★ 哈姆</div>
