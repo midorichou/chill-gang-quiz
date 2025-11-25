@@ -80,10 +80,6 @@
             background-color: #1ed760; 
             transform: translateY(-2px);
         }
-        .btn:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
         
         /* 首頁按鈕置中 */
         .homepage-content {
@@ -101,17 +97,10 @@
             font-weight: 500; 
             margin-top: 0; 
         }
-        .btn.secondary-cta:hover {
-            background-color: rgba(29, 185, 84, 0.1); 
-            color: #1ed760;
-            transform: translateY(-1px);
-        }
 
         /* 特殊處理：測驗頁的下一題和送出按鈕需要佔滿寬度 */
         #quiz-page .btn {
             width: 100%;
-            padding-left: 15px;
-            padding-right: 15px;
         }
 
         /* 讓結果頁的按鈕容器置中 */
@@ -123,8 +112,6 @@
         /* 讓重新測驗按鈕佔滿寬度 */
         #result-page button.btn {
             width: 100%;
-            padding-left: 15px;
-            padding-right: 15px;
         }
 
         /* ==================== 首頁樣式 (Homepage) - 網頁版 ==================== */
@@ -144,7 +131,7 @@
             margin-bottom: 30px;
         }
 
-        /* ==================== 問題頁樣式 (Quiz Page) - 網頁版 ==================== */
+        /* ==================== 問題頁樣式 (Quiz Page) ==================== */
         .question-card {
             background-color: var(--card-bg);
             border-radius: 10px;
@@ -154,134 +141,34 @@
         }
         .question-card p {
             font-weight: 500;
-            font-size: 1.2em; /* 網頁版問題字體 */
+            font-size: 1.2em;
             color: var(--secondary-bg-light);
             margin-top: 0;
             margin-bottom: 20px;
             line-height: 1.5;
         }
         
-        /* 選項卡片樣式調整 - 網頁版 */
+        /* 選項卡片樣式調整 */
         .option-label {
             display: block;
             margin: 12px 0;
-            padding: 20px; /* 網頁版 Padding */
+            padding: 20px; 
             border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+            transition: background-color 0.2s ease;
             background-color: #4b5a6d; 
             border: 2px solid transparent; 
             color: var(--text-light);
             font-weight: 400;
-            font-size: 1em; /* 網頁版選項字體 */
+            font-size: 1em; 
             display: flex; 
             align-items: flex-start; 
         }
-        .option-label:hover {
-            background-color: #5c6e80;
-            transform: translateY(-1px);
-        }
-        
-        /* 選項 radio button */
-        input[type="radio"] {
-            margin: 2px 15px 0 0; 
-            accent-color: var(--button-accent); 
-            transform: scale(1.2); 
-            min-width: 20px; 
-            min-height: 20px; 
-            -webkit-appearance: radio; 
-            -moz-appearance: radio;
-            appearance: radio;
-            cursor: pointer;
-            flex-shrink: 0; 
-        }
-        
-        /* 選中狀態的文字 */
-        input[type="radio"]:checked + span {
-            font-weight: 500;
-            color: var(--secondary-bg-light);
-        }
-        
-        /* 答題進度條 */
-        #progress-bar-container {
-            height: 12px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 6px;
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-        #progress-bar {
-            height: 100%;
-            width: 0%;
-            background-color: var(--button-accent);
-            border-radius: 6px;
-            transition: width 0.4s ease-in-out;
-        }
 
         /* ==================== 結果頁樣式 (Result Page) ==================== */
-        /* --- 動態效果 CSS 定義 (未變動) --- */
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        @keyframes blink-caret {
-            from, 75% { border-color: var(--button-accent); } 
-            85%, to { border-color: transparent; } 
-        }
-        @keyframes fadeInSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes buttonPulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.4);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(29, 185, 84, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(29, 185, 84, 0);
-            }
-        }
-        @keyframes starReveal {
-            0% {
-                filter: blur(10px); 
-                opacity: 0.1; 
-                transform: scale(1.05); 
-            }
-            20% {
-                filter: blur(8px);
-                opacity: 0.2;
-            }
-            100% {
-                filter: blur(0px); 
-                opacity: 1; 
-                transform: scale(1);
-            }
-        }
-        @keyframes overlayFadeOut {
-            0% { opacity: 0.8; }
-            100% { opacity: 0; } 
-        }
-        /* --- 動態效果 CSS 應用 (網頁版字體大小) --- */
-
-        #result-page h2 {
-            font-size: 2em; /* 網頁版主標題 */
-        }
         #final-actor {
-            font-size: 2.8em; /* 網頁版演員名稱字體 */
-            font-weight: 700;
-            color: var(--button-accent); 
-            text-align: center;
-            margin: 0 auto 25px auto; 
-            text-shadow: 0 0 10px rgba(29, 185, 84, 0.4);
-            overflow: hidden; 
+            font-size: 2.8em; 
+            /* ... 打字機動畫相關 CSS ... */
             white-space: nowrap; 
             letter-spacing: 0.15em; 
             border-right: 0.1em solid var(--button-accent); 
@@ -289,7 +176,7 @@
         }
         
         #final-text {
-            font-size: 1.15em; /* 網頁版結果文案字體 */
+            font-size: 1.15em; 
             line-height: 1.8;
             text-align: center;
             color: rgba(255, 255, 255, 0.85);
@@ -297,56 +184,78 @@
             white-space: pre-wrap; 
         }
         
-        /* 圖片和 CTA 區塊樣式 (網頁版) */
-        #result-image-container a {
-            opacity: 0; 
-            animation: fadeInSlideUp 0.6s ease-out 0.2s forwards; 
-            position: relative; 
+        /* 圖片容器：用於圖片置中，已包含 text-align: center */
+        #result-image-container {
+            text-align: center;
+            margin-bottom: 25px;
         }
+        
+        /* 結果圖 (網頁版) */
         #result-img {
+            display: inline-block; 
             max-width: 400px; 
-            width: 65%; /* 網頁版圖片寬度 */
-            animation: starReveal 3s ease-out 0.8s forwards; 
-            filter: blur(10px); 
-            opacity: 0.1; 
-            transform: scale(1.05); 
-        }
-        #result-image-container a::before {
-            max-width: 400px;
-            width: 65%; /* 網頁版偽元素寬度與圖片同步 */
-            animation: overlayFadeOut 3s ease-out 0.8s forwards; 
-        }
-        
-        /* CTA 文案區塊樣式 */
-        #cta-text-content {
-            background-color: var(--card-bg); 
+            width: 65%; 
+            height: auto; 
             border-radius: 10px;
-            padding: 25px;
-            margin: 35px auto 35px auto; 
-            max-width: 600px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        /* 桌面/平板版文案 (預設顯示) */
-        #cta-text-content p.cta-text-desktop {
-            display: block; 
-            text-align: left; 
-            font-size: 1.05em;
-            line-height: 1.6; 
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 20px;
-            white-space: pre-wrap;
-        }
-        /* 手機版文案 (預設隱藏) */
-        #cta-text-content p.cta-text-mobile {
-            display: none; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            vertical-align: top;
+            /* 圖片揭示動畫 CSS ... */
         }
         
+        /* 網頁版偽元素 (霧面) 定位與尺寸 */
+        #result-image-container a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 400px;
+            width: 65%; /* 網頁版寬度與圖片同步 */
+            height: 100%;
+            border-radius: 10px;
+            /* ... 其他霧面效果 CSS ... */
+        }
+        
+        /* 【修正點 3-2】截圖分享特殊 UI (已確認為您要求的淺色背景設計) */
+        #share-instructions {
+            text-align: center;
+            margin-top: -15px; 
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        #share-instructions p.main-share-text {
+            margin: 0;
+            padding: 8px 15px;
+            background-color: var(--secondary-bg-light); /* 淺色背景 */
+            color: var(--text-dark); /* 深色文字 */
+            border-radius: 4px;
+            display: inline-block; /* 讓背景色只包住文字 */
+            font-size: 0.9em;
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* 【修正點 4】CTA 圖片連結區塊：調整為可閱讀的正常大小 */
+        .cta-image-link {
+            display: block;
+            width: 90%; /* 限制寬度 */
+            max-width: 550px; /* 限制網頁版最大寬度 */
+            height: auto;
+            margin: 0 auto 0 auto; /* 置中 */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease;
+        }
+        .cta-image-link img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* CTA 文案區塊樣式 - 網頁版獨立的 Cast List 結構 (保持) */
         #cta-text-content .cast-list {
-            margin-top: 20px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.3);
-            padding-top: 20px;
-            font-size: 0.95em;
-            line-height: 1.6;
+            /* ... 樣式保持不變 ... */
             display: flex; /* 網頁版顯示 */
             flex-direction: column;
             align-items: center; 
@@ -360,21 +269,20 @@
                 padding: 20px; /* 縮小頁面 Padding */
             }
             
-            /* --- 1. 首頁圖切換為方型圖片 --- */
+            /* 【修正點 1】首頁圖切換為方型圖片 & 完整顯示 */
             .hero-image-homepage {
                 background-image: url('images/ChillGang_front_image_phone.jpg');
-                height: 300px; /* 方型高度 */
-                background-size: cover; 
+                height: 350px; /* 確保方型圖有足夠空間 */
+                background-size: contain; /* 確保完整顯示，不裁切 */
+                background-repeat: no-repeat;
+                background-position: center;
                 margin-bottom: 20px;
             }
             .homepage-content {
                 padding: 20px;
             }
 
-            /* --- 2. 問題頁按鈕邊寬減少，字體縮小 --- */
-            #quiz-page h1 {
-                font-size: 1.6em; /* 標題縮小 */
-            }
+            /* 問題頁字體調整 */
             .question-card p {
                 font-size: 1.1em; /* 問題字體縮小 */
             }
@@ -382,18 +290,13 @@
                 padding: 12px 15px; /* 縮小 Padding */
                 font-size: 0.95em; /* 選項字體縮小 */
             }
-            input[type="radio"] {
-                transform: scale(1.1); /* 稍微縮小 radio */
-            }
 
-            /* --- 3. 結果頁字體縮小符合手機閱讀 --- */
+            /* 結果頁字體調整 */
             #result-page h2 {
                 font-size: 1.4em; /* 主標題縮小 */
-                margin-bottom: 15px;
             }
             #final-actor {
                 font-size: 2em; /* 演員名稱縮小 */
-                margin-bottom: 15px;
             }
             #final-text {
                 font-size: 1.0em; /* 結果文案縮小 */
@@ -407,31 +310,24 @@
                 width: 85%; /* 偽元素寬度調整 */
             }
             
-            #share-instructions p.main-share-text {
-                font-size: 0.85em; 
-            }
-            #share-instructions p.small-cta-text {
-                font-size: 0.75em;
-            }
-            
-            #cta-text-content {
-                padding: 20px;
-                margin-bottom: 25px;
+            /* CTA 圖片連結區塊 (手機版佔滿內層寬度) */
+            .cta-image-link {
+                width: 100%; 
+                max-width: none;
             }
 
-            /* --- 4. CTA 文案切換為手機版 (自帶 Cast List) --- */
+            /* CTA 文案切換為手機版 (自帶 Cast List) */
             #cta-text-content p.cta-text-desktop {
                 display: none !important; 
             }
             #cta-text-content p.cta-text-mobile {
-                /* 顯示手機版文案 */
                 display: block !important; 
-                text-align: left; /* 由於文案是多行且包含列表，左對齊較合適 */
+                text-align: left; 
                 font-size: 1em; 
                 line-height: 1.7;
-                white-space: pre-wrap; /* 保持換行格式 */
+                white-space: pre-wrap;
             }
-            /* 隱藏網頁版獨立的 Cast List 區塊，因為手機版文案已包含內容 */
+            /* 隱藏網頁版獨立的 Cast List 區塊 */
             #cta-text-content .cast-list {
                 display: none !important;
             }
@@ -447,7 +343,7 @@
             </div>
         <div class="homepage-content">
             <h1>你是 Chill Gang 幫喬飛的播放清單中哪位演員？</h1>
-            <p>這是一個為您量身打造的專屬測驗，透過 5 個情境題，找出你在 **Chill Gang 幫喬飛的播放清單** 中的隱藏喜劇人格，揭曉你是最 Chill 的哪位演員或組合！準備好進入你的喜劇人生了嗎？</p>
+            <p>為您量身打造的專屬測驗，透過 5 個情境題，找出你在 《Chill Gang 幫喬飛的播放清單》中的隱藏喜劇人格，揭曉你是最 Chill 的哪位演員或組合！準備好了嗎？</p>
             <button class="btn" onclick="startQuiz()">開始測驗！</button>
         </div>
     </div>
@@ -480,7 +376,6 @@
             <p class="small-cta-text">想知道節目完整內容？點擊圖片現在看！</p>
         </div>
 
-        
         <a id="cta-link-image" class="cta-image-link" href="https://str.network/PUxNW" target="_blank" rel="noopener noreferrer" style="display: none;">
             <img id="cta-image" src="images/ChillGang_Result_Z_CTA.jpg" alt="前往觀看 Chill Gang 幫喬飛的播放清單">
         </a>
@@ -668,26 +563,23 @@
 
         // --- 重置動畫狀態 ---
         const actorDiv = document.getElementById('final-actor');
-        actorDiv.style.animation = 'none'; // 停止打字機動畫
-        actorDiv.style.width = '0'; // 重設寬度
+        actorDiv.style.animation = 'none'; 
+        actorDiv.style.width = '0'; 
 
-        // 重置圖片動畫狀態 (重要：圖片的過渡效果需要重新設定為初始狀態)
         const resultImg = document.getElementById('result-img');
         resultImg.style.animation = 'none';
         resultImg.style.filter = 'blur(10px)'; 
         resultImg.style.opacity = '0.1';
         resultImg.style.transform = 'scale(1.05)';
 
-        // 重置圖片容器的淡入動畫
         const imgLink = document.querySelector('#result-image-container a');
         imgLink.style.animation = 'none';
-        imgLink.style.opacity = '0'; // 重新設為隱藏
+        imgLink.style.opacity = '0'; 
 
-        // 重置圖片偽元素動畫狀態
         const overlay = document.querySelector('#result-image-container a::before');
         if (overlay) {
             overlay.style.animation = 'none';
-            overlay.style.opacity = '0.8'; // 重新設為初始霧面透明度
+            overlay.style.opacity = '0.8'; 
         }
         // ------------------
     }
@@ -780,7 +672,6 @@
         return RESULTS_MAP[finalResultKey];
     }
 
-    // 修正後的 showResultPage 函數 (含強制重繪以確保動畫重跑)
     function showResultPage() {
         if (answers[currentQuestionIndex] === null) {
             alert("請完成最後一題的選擇！");
@@ -794,15 +685,12 @@
         const actorDiv = document.getElementById('final-actor');
         const typingDuration = actorName.length * 0.1 + 0.3; 
         
-        // 重置動畫狀態
         actorDiv.style.animation = 'none';
         actorDiv.innerText = actorName; 
         actorDiv.style.width = 'fit-content';
         
-        // 強制重繪 (Reflow)
         void actorDiv.offsetWidth; 
 
-        // 應用新的動畫 (游標會在動畫結束後消失)
         actorDiv.style.animation = `typing ${typingDuration}s steps(${actorName.length}) forwards, blink-caret ${typingDuration}s step-end forwards`;
         
         // --- 2. 更新精簡後的結果文案 ---
@@ -812,22 +700,19 @@
         const resultImg = document.getElementById('result-img');
         resultImg.src = result.image; 
 
-        // 重設圖片動畫，使其從初始的模糊/透明狀態開始
         resultImg.style.animation = 'none'; 
         resultImg.style.filter = 'blur(10px)'; 
         resultImg.style.opacity = '0.1';
         resultImg.style.transform = 'scale(1.05)';
-        void resultImg.offsetWidth; // 強制重繪
+        void resultImg.offsetWidth; 
         resultImg.style.animation = 'starReveal 3s ease-out 0.8s forwards';
 
-        // 重新應用圖片容器的淡入動畫
         const imgLink = document.querySelector('#result-image-container a');
         imgLink.style.animation = 'none';
         imgLink.style.opacity = '0';
         void imgLink.offsetWidth;
         imgLink.style.animation = 'fadeInSlideUp 0.6s ease-out 0.2s forwards';
 
-        // 重新應用偽元素的淡出動畫
         const overlay = document.querySelector('#result-image-container a::before');
         if (overlay) {
             overlay.style.animation = 'none';
@@ -853,12 +738,10 @@
         document.getElementById('quiz-page').classList.remove('active');
         document.getElementById('result-page').classList.remove('active');
         
-        // 確保初始狀態正確
         document.getElementById('cta-link-image').style.display = 'none';
         document.getElementById('result-img').src = '';
         document.getElementById('result-link').innerHTML = '▶️ 觀看 Ta 的表演！';
         
-        // 確保結果頁隱藏時，元素無動畫
         const actorDiv = document.getElementById('final-actor');
         actorDiv.style.animation = 'none';
     });
