@@ -37,7 +37,7 @@
             background-color: var(--primary-bg-dark); 
             border-radius: 12px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-            max-width: 700px;
+            max-width: 700px; /* 網頁版最大寬度 */
             width: 100%;
             margin: 40px 20px;
             overflow: hidden;
@@ -219,19 +219,16 @@
 
         /* ==================== 結果頁樣式 (Result Page) ==================== */
         /* --- 動態效果 CSS 定義 --- */
-        /* 打字機效果 */
         @keyframes typing {
             from { width: 0 }
             to { width: 100% }
         }
 
-        /* 打字游標閃爍及消失 (結束時完全透明) */
         @keyframes blink-caret {
-            from, 75% { border-color: var(--button-accent); } /* 在75%之前保持可見 */
-            85%, to { border-color: transparent; } /* 在85%之後到結束都透明 */
+            from, 75% { border-color: var(--button-accent); } 
+            85%, to { border-color: transparent; } 
         }
 
-        /* 元素淡入上浮 */
         @keyframes fadeInSlideUp {
             from {
                 opacity: 0;
@@ -243,7 +240,6 @@
             }
         }
         
-        /* 按鈕脈衝 */
         @keyframes buttonPulse {
             0% {
                 box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.4);
@@ -256,28 +252,26 @@
             }
         }
 
-        /* 結果圖片揭示動畫 (3秒) */
         @keyframes starReveal {
             0% {
-                filter: blur(10px); /* 初始模糊 */
-                opacity: 0.1; /* 圖片本身稍暗或透明 */
-                transform: scale(1.05); /* 輕微放大感 */
+                filter: blur(10px); 
+                opacity: 0.1; 
+                transform: scale(1.05); 
             }
             20% {
                 filter: blur(8px);
                 opacity: 0.2;
             }
             100% {
-                filter: blur(0px); /* 最終清晰 */
-                opacity: 1; /* 完全顯示 */
+                filter: blur(0px); 
+                opacity: 1; 
                 transform: scale(1);
             }
         }
         
-        /* 疊加層淡出 */
         @keyframes overlayFadeOut {
             0% { opacity: 0.8; }
-            100% { opacity: 0; } /* 最終完全透明 */
+            100% { opacity: 0; } 
         }
         /* --- 動態效果 CSS 應用 --- */
 
@@ -286,63 +280,62 @@
             font-weight: 700;
             color: var(--button-accent); 
             text-align: center;
-            margin: 0 auto 25px auto; /* 保持置中 */
+            margin: 0 auto 25px auto; 
             text-shadow: 0 0 10px rgba(29, 185, 84, 0.4);
-            /* 打字機效果 CSS */
             overflow: hidden; 
             white-space: nowrap; 
             letter-spacing: 0.15em; 
-            border-right: 0.1em solid var(--button-accent); /* 模擬游標 */
-            width: 0; /* 初始寬度為 0，由 JS 設置動畫 */
+            border-right: 0.1em solid var(--button-accent); 
+            width: 0; 
         }
         
         /* 圖片容器：用於淡入上浮及疊加偽元素 */
         #result-image-container a {
-            display: block; /* 確保連結佔滿容器 */
-            opacity: 0; /* 預設隱藏，由 fadeInSlideUp 控制 */
-            animation: fadeInSlideUp 0.6s ease-out 0.2s forwards; /* 先讓容器淡入上浮 */
-            position: relative; /* 用於疊加偽元素 */
+            display: block; 
+            opacity: 0; 
+            animation: fadeInSlideUp 0.6s ease-out 0.2s forwards; 
+            position: relative; 
         }
         
         #result-image-container {
             text-align: center;
             margin-bottom: 25px;
         }
+
+        /* 網頁版圖片寬度 */
         #result-img {
-            display: inline-block; /* 確保 img 是 block-level 才能應用 filter */
+            display: inline-block; 
             max-width: 400px; 
-            width: 65%; 
+            width: 65%; /* 網頁版寬度 */
             height: auto; 
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             vertical-align: top;
             
-            /* 這裡應用結果圖的揭示動畫 */
-            animation: starReveal 3s ease-out 0.8s forwards; /* 在 fadeInSlideUp 結束後再延遲開始，總計約 3.8秒 */
-            filter: blur(10px); /* 初始模糊 */
-            opacity: 0.1; /* 初始較暗 */
-            transform: scale(1.05); /* 初始輕微放大 */
+            /* 圖片揭示動畫 */
+            animation: starReveal 3s ease-out 0.8s forwards; 
+            filter: blur(10px); 
+            opacity: 0.1; 
+            transform: scale(1.05); 
         }
 
-        /* 模擬星星霧面的偽元素 */
+        /* 網頁版偽元素 (霧面) 定位與尺寸 */
         #result-image-container a::before {
             content: '';
             position: absolute;
-            /* 讓偽元素精確覆蓋圖片 */
             top: 0;
             left: 50%;
             transform: translateX(-50%);
             max-width: 400px;
-            width: 65%; 
+            width: 65%; /* 網頁版寬度與圖片同步 */
             height: 100%;
             border-radius: 10px;
-            /* 使用漸變模擬微光/霧面，您可以替換成星星紋理圖 */
             background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%); 
             background-size: 150px 150px; 
-            opacity: 0.8; /* 初始較高的霧面透明度 */
-            animation: overlayFadeOut 3s ease-out 0.8s forwards; /* 與圖片動畫同步淡出 */
-            pointer-events: none; /* 確保不阻擋圖片點擊 */
-            z-index: 1; /* 確保在圖片上方 */
+            opacity: 0.8; 
+            animation: overlayFadeOut 3s ease-out 0.8s forwards; 
+            pointer-events: none; 
+            z-index: 1; 
         }
         
         #share-instructions {
@@ -405,6 +398,7 @@
             max-width: 600px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
+        /* 桌面/平板版文案 (預設顯示) */
         #cta-text-content p.cta-text-desktop {
             display: block; 
             text-align: left; 
@@ -414,6 +408,7 @@
             margin-bottom: 20px;
             white-space: pre-wrap;
         }
+        /* 手機版文案 (預設隱藏) */
         #cta-text-content p.cta-text-mobile {
             display: none; 
         }
@@ -458,15 +453,17 @@
             font-size: 0.8em;
         }
         
-        /* 響應式調整 */
+        /* ==================== 手機版響應式調整 (Mobile Responsive) ==================== */
         @media (max-width: 600px) {
             .hero-image-homepage {
                 background-size: contain; 
             }
-            p.cta-text-desktop {
+            
+            /* 1. CTA 文案切換為手機版 */
+            #cta-text-content p.cta-text-desktop {
                 display: none !important; 
             }
-            p.cta-text-mobile {
+            #cta-text-content p.cta-text-mobile {
                 display: block !important; 
                 text-align: center; 
                 font-size: 1em; 
@@ -476,11 +473,12 @@
                 margin-bottom: 25px;
             }
 
+            /* 2. 圖片寬度調整為 85% */
             #result-img {
                 width: 85%; 
             }
 
-            /* 手機版修正偽元素寬度以匹配圖片 */
+            /* 3. 霧面偽元素寬度調整為 85%，以完美覆蓋圖片 */
             #result-image-container a::before {
                 width: 85%; 
             }
@@ -672,7 +670,7 @@
         }
     };
 
-    // ==================== 狀態管理與函數 (邏輯變動) ====================
+    // ==================== 狀態管理與函數 (修正重置動畫邏輯) ====================
     let currentQuestionIndex = 0;
     let scores = { "R1": 0, "R2": 0, "R3": 0, "R4": 0, "R5": 0, "R6": 0, "R7": 0 };
     const answers = new Array(QUIZ_DATA.length).fill(null); 
@@ -704,10 +702,11 @@
         document.getElementById('cta-link-image').style.display = 'none';
         document.getElementById('result-link').innerHTML = '▶️ 觀看 Ta 的表演！'; 
 
-        // 重置打字機動畫：清除 style 屬性，讓 CSS 預設值生效
+        // --- 重置動畫狀態 ---
         const actorDiv = document.getElementById('final-actor');
-        actorDiv.removeAttribute('style'); 
-        
+        actorDiv.style.animation = 'none'; // 停止打字機動畫
+        actorDiv.style.width = '0'; // 重設寬度
+
         // 重置圖片動畫狀態 (重要：圖片的過渡效果需要重新設定為初始狀態)
         const resultImg = document.getElementById('result-img');
         resultImg.style.animation = 'none';
@@ -715,13 +714,18 @@
         resultImg.style.opacity = '0.1';
         resultImg.style.transform = 'scale(1.05)';
 
-        // 重置圖片偽元素動畫狀態
+        // 重置圖片容器的淡入動畫
         const imgLink = document.querySelector('#result-image-container a');
         imgLink.style.animation = 'none';
+        imgLink.style.opacity = '0'; // 重新設為隱藏
+
+        // 重置圖片偽元素動畫狀態
         const overlay = document.querySelector('#result-image-container a::before');
         if (overlay) {
             overlay.style.animation = 'none';
+            overlay.style.opacity = '0.8'; // 重新設為初始霧面透明度
         }
+        // ------------------
     }
 
     function loadQuestion(index) {
@@ -822,42 +826,40 @@
         const result = calculateFinalResult();
         const actorName = result.actor;
         
-        // 1. 打字機效果設置：強制重繪
+        // --- 1. 打字機效果設置 ---
         const actorDiv = document.getElementById('final-actor');
         const typingDuration = actorName.length * 0.1 + 0.3; 
         
-        // 步驟 A: 重置/清除上次動畫狀態 (打字機)
+        // 重置動畫狀態
         actorDiv.style.animation = 'none';
-        actorDiv.innerText = actorName; // 先設置文字，計算寬度
-        
-        // 確保寬度為內容寬度，用於打字機動畫
+        actorDiv.innerText = actorName; 
         actorDiv.style.width = 'fit-content';
         
-        // 步驟 B: 強制重繪 (Reflow) - 確保瀏覽器重新計算 DOM
+        // 強制重繪 (Reflow)
         void actorDiv.offsetWidth; 
 
-        // 步驟 C: 應用新的動畫 (打字機，游標會在動畫結束後消失)
-        // 這裡將 blink-caret 的持續時間設為與 typing 相同，使其在打完字後停止閃爍並透明
+        // 應用新的動畫 (游標會在動畫結束後消失)
         actorDiv.style.animation = `typing ${typingDuration}s steps(${actorName.length}) forwards, blink-caret ${typingDuration}s step-end forwards`;
         
-        // 2. 更新精簡後的結果文案
+        // --- 2. 更新精簡後的結果文案 ---
         document.getElementById('final-text').innerText = `🎉 恭喜你！你的喜劇人格是：【${actorName}】`;
         
-        // 3. 更新圖片並重設動畫 (圖片揭示動畫)
+        // --- 3. 更新圖片並觸發揭示動畫 ---
         const resultImg = document.getElementById('result-img');
         resultImg.src = result.image; 
 
-        // 必須清除可能殘留的 inline style，然後重新應用 CSS 動畫
+        // 重設圖片動畫，使其從初始的模糊/透明狀態開始
         resultImg.style.animation = 'none'; 
         resultImg.style.filter = 'blur(10px)'; 
         resultImg.style.opacity = '0.1';
         resultImg.style.transform = 'scale(1.05)';
-        void resultImg.offsetWidth; // 圖片強制重繪
+        void resultImg.offsetWidth; // 強制重繪
         resultImg.style.animation = 'starReveal 3s ease-out 0.8s forwards';
 
         // 重新應用圖片容器的淡入動畫
         const imgLink = document.querySelector('#result-image-container a');
         imgLink.style.animation = 'none';
+        imgLink.style.opacity = '0';
         void imgLink.offsetWidth;
         imgLink.style.animation = 'fadeInSlideUp 0.6s ease-out 0.2s forwards';
 
@@ -865,14 +867,15 @@
         const overlay = document.querySelector('#result-image-container a::before');
         if (overlay) {
             overlay.style.animation = 'none';
+            overlay.style.opacity = '0.8';
             void overlay.offsetWidth;
             overlay.style.animation = 'overlayFadeOut 3s ease-out 0.8s forwards';
         }
 
-        // 4. 顯示 CTA 圖片連結
+        // --- 4. 顯示 CTA 圖片連結 ---
         document.getElementById('cta-link-image').style.display = 'block';
         
-        // 5. 更新演員專屬連結按鈕的連結與文字
+        // --- 5. 更新演員專屬連結按鈕 ---
         const resultLink = document.getElementById('result-link');
         resultLink.href = result.link;
         resultLink.innerHTML = `▶️ 觀看 ${result.actor} 的表演！`;
