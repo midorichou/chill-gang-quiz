@@ -135,6 +135,7 @@
             width: 100%;
             height: 350px; 
             background-color: var(--card-bg); 
+            /* 假設圖檔放在 images 資料夾 */
             background-image: url('images/ChillGang_front_image.jpg'); 
             background-size: cover; 
             background-repeat: no-repeat;
@@ -218,13 +219,62 @@
         }
 
         /* ==================== 結果頁樣式 (Result Page) ==================== */
+        /* --- 動態效果 CSS 定義 --- */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--button-accent); }
+        }
+
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes buttonPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(29, 185, 84, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(29, 185, 84, 0);
+            }
+        }
+        /* --- 動態效果 CSS 應用 --- */
+
         #final-actor {
             font-size: 2.8em; 
             font-weight: 700;
             color: var(--button-accent); 
             text-align: center;
-            margin-bottom: 25px;
+            /* 必須設置為 auto，JS 會計算寬度 */
+            margin: 0 auto 25px auto; 
             text-shadow: 0 0 10px rgba(29, 185, 84, 0.4);
+            /* 打字機效果 CSS */
+            overflow: hidden; 
+            white-space: nowrap; 
+            letter-spacing: 0.15em; 
+            border-right: 0.1em solid var(--button-accent); /* 模擬游標 */
+            width: 0; /* 初始寬度為 0，由 JS 設置動畫 */
+        }
+        
+        /* 應用圖片入場動畫 */
+        #result-image-container a {
+            display: block; 
+            opacity: 0; /* 預設隱藏 */
+            animation: fadeInSlideUp 0.6s ease-out 0.2s forwards; /* 延遲 0.2s 開始 */
         }
         
         #result-image-container {
@@ -258,6 +308,7 @@
             border: 1px solid rgba(0,0,0,0.1);
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
+        /* 1. 小字引導文案調整 */
         #share-instructions p.small-cta-text {
             margin-top: 10px; 
             font-size: 0.8em;
@@ -271,7 +322,7 @@
             line-height: 1.8;
             text-align: center;
             color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 15px; /* 調整後的間距 */
+            margin-bottom: 15px; 
             white-space: pre-wrap; 
         }
 
@@ -338,6 +389,15 @@
              margin-bottom: 5px; 
         }
         
+        /* 應用按鈕脈衝動畫 */
+        #result-page button.btn {
+            margin-top: 40px;
+            animation: buttonPulse 2s infinite ease-out 1s; /* 延遲 1s 後開始脈衝 */
+        }
+        #result-page button.btn:hover {
+            animation: none; /* 滑鼠移入時停止脈衝 */
+        }
+
         .credits {
             text-align: center;
             color: rgba(255, 255, 255, 0.5);
@@ -450,7 +510,7 @@
             </a>
         </div>
         
-        <button class="btn" style="margin-top: 40px;" onclick="resetQuiz()">重新測驗</button>
+        <button class="btn" onclick="resetQuiz()">重新測驗</button>
 
         <div class="credits">
             <p>測驗設計：使用者提供，由 Google Gemini 3 生成互動網頁程式碼</p>
@@ -554,7 +614,7 @@
         }
     };
 
-    // ==================== 狀態管理與函數 (邏輯未變動，僅 showResultPage 變動) ====================
+    // ==================== 狀態管理與函數 (邏輯變動) ====================
     let currentQuestionIndex = 0;
     let scores = { "R1": 0, "R2": 0, "R3": 0, "R4": 0, "R5": 0, "R6": 0, "R7": 0 };
     const answers = new Array(QUIZ_DATA.length).fill(null); 
@@ -581,11 +641,14 @@
         switchPage('homepage');
         document.getElementById('final-actor').innerText = '';
         document.getElementById('final-text').innerText = '';
-        // 清除圖片
+        
         document.getElementById('result-img').src = ''; 
-        // 隱藏 CTA 圖片
         document.getElementById('cta-link-image').style.display = 'none';
-        document.getElementById('result-link').innerHTML = '▶️ 觀看 Ta 的表演！'; // 重置連結文字
+        document.getElementById('result-link').innerHTML = '▶️ 觀看 Ta 的表演！'; 
+
+        // 重置打字機動畫：清除 style 屬性，讓 CSS 預設值生效
+        const actorDiv = document.getElementById('final-actor');
+        actorDiv.removeAttribute('style'); 
     }
 
     function loadQuestion(index) {
@@ -676,7 +739,7 @@
         return RESULTS_MAP[finalResultKey];
     }
 
-    // 沿用精簡文案邏輯
+    // 修正後的 showResultPage 函數 (含強制重繪以確保動畫重跑)
     function showResultPage() {
         if (answers[currentQuestionIndex] === null) {
             alert("請完成最後一題的選擇！");
@@ -684,18 +747,35 @@
         }
         
         const result = calculateFinalResult();
-
-        // 更新結果頁內容：只保留恭喜語和演員名稱
-        document.getElementById('final-actor').innerText = result.actor;
-        document.getElementById('final-text').innerText = `🎉 恭喜你！你的喜劇人格是：【${result.actor}】`;
+        const actorName = result.actor;
         
-        // 更新結果圖片 (使用 <img> 標籤)
+        // 1. 打字機效果設置：強制重繪
+        const actorDiv = document.getElementById('final-actor');
+        const typingDuration = actorName.length * 0.1 + 0.3; 
+        
+        // 步驟 A: 重置/清除上次動畫狀態
+        actorDiv.style.animation = 'none';
+        actorDiv.innerText = actorName; // 先設置文字，計算寬度
+        
+        // 確保寬度為內容寬度，用於打字機動畫
+        actorDiv.style.width = 'fit-content';
+        
+        // 步驟 B: 強制重繪 (Reflow) - 確保瀏覽器將 'none' 註冊為新的狀態
+        void actorDiv.offsetWidth; 
+
+        // 步驟 C: 應用新的動畫
+        actorDiv.style.animation = `typing ${typingDuration}s steps(${actorName.length}) forwards, blink-caret 0.75s step-end infinite`;
+        
+        // 2. 更新精簡後的結果文案
+        document.getElementById('final-text').innerText = `🎉 恭喜你！你的喜劇人格是：【${actorName}】`;
+        
+        // 3. 更新圖片 (圖片入場動畫會由 CSS 自動觸發，因為 result-image-container 的 a 標籤從 display: none 變成了 display: block)
         document.getElementById('result-img').src = result.image; 
 
-        // 顯示 CTA 圖片連結
+        // 4. 顯示 CTA 圖片連結
         document.getElementById('cta-link-image').style.display = 'block';
         
-        // 更新演員專屬連結按鈕的連結與文字
+        // 5. 更新演員專屬連結按鈕的連結與文字
         const resultLink = document.getElementById('result-link');
         resultLink.href = result.link;
         resultLink.innerHTML = `▶️ 觀看 ${result.actor} 的表演！`;
@@ -713,6 +793,10 @@
         document.getElementById('cta-link-image').style.display = 'none';
         document.getElementById('result-img').src = '';
         document.getElementById('result-link').innerHTML = '▶️ 觀看 Ta 的表演！';
+        
+        // 確保結果頁隱藏時，元素無動畫
+        const actorDiv = document.getElementById('final-actor');
+        actorDiv.style.animation = 'none';
     });
 </script>
 
