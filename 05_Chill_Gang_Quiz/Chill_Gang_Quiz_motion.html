@@ -127,15 +127,15 @@
             padding-right: 15px;
         }
 
-        /* ==================== 首頁樣式 (Homepage) ==================== */
+        /* ==================== 首頁樣式 (Homepage) - 網頁版 ==================== */
         #homepage {
             padding: 0; 
         }
         .hero-image-homepage {
             width: 100%;
-            height: 350px; 
+            height: 350px; /* 網頁版高度 */
             background-color: var(--card-bg); 
-            background-image: url('images/ChillGang_front_image.jpg'); 
+            background-image: url('images/ChillGang_front_image.jpg'); /* 網頁版圖片 */
             background-size: cover; 
             background-repeat: no-repeat;
             background-position: center;
@@ -144,7 +144,7 @@
             margin-bottom: 30px;
         }
 
-        /* ==================== 問題頁樣式 (Quiz Page) - 卡片 UI ==================== */
+        /* ==================== 問題頁樣式 (Quiz Page) - 網頁版 ==================== */
         .question-card {
             background-color: var(--card-bg);
             border-radius: 10px;
@@ -154,18 +154,18 @@
         }
         .question-card p {
             font-weight: 500;
-            font-size: 1.2em;
+            font-size: 1.2em; /* 網頁版問題字體 */
             color: var(--secondary-bg-light);
             margin-top: 0;
             margin-bottom: 20px;
             line-height: 1.5;
         }
         
-        /* 選項卡片樣式調整 */
+        /* 選項卡片樣式調整 - 網頁版 */
         .option-label {
             display: block;
             margin: 12px 0;
-            padding: 20px; 
+            padding: 20px; /* 網頁版 Padding */
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
@@ -173,6 +173,7 @@
             border: 2px solid transparent; 
             color: var(--text-light);
             font-weight: 400;
+            font-size: 1em; /* 網頁版選項字體 */
             display: flex; 
             align-items: flex-start; 
         }
@@ -218,17 +219,15 @@
         }
 
         /* ==================== 結果頁樣式 (Result Page) ==================== */
-        /* --- 動態效果 CSS 定義 --- */
+        /* --- 動態效果 CSS 定義 (未變動) --- */
         @keyframes typing {
             from { width: 0 }
             to { width: 100% }
         }
-
         @keyframes blink-caret {
             from, 75% { border-color: var(--button-accent); } 
             85%, to { border-color: transparent; } 
         }
-
         @keyframes fadeInSlideUp {
             from {
                 opacity: 0;
@@ -239,7 +238,6 @@
                 transform: translateY(0);
             }
         }
-        
         @keyframes buttonPulse {
             0% {
                 box-shadow: 0 0 0 0 rgba(29, 185, 84, 0.4);
@@ -251,7 +249,6 @@
                 box-shadow: 0 0 0 0 rgba(29, 185, 84, 0);
             }
         }
-
         @keyframes starReveal {
             0% {
                 filter: blur(10px); 
@@ -268,15 +265,17 @@
                 transform: scale(1);
             }
         }
-        
         @keyframes overlayFadeOut {
             0% { opacity: 0.8; }
             100% { opacity: 0; } 
         }
-        /* --- 動態效果 CSS 應用 --- */
+        /* --- 動態效果 CSS 應用 (網頁版字體大小) --- */
 
+        #result-page h2 {
+            font-size: 2em; /* 網頁版主標題 */
+        }
         #final-actor {
-            font-size: 2.8em; 
+            font-size: 2.8em; /* 網頁版演員名稱字體 */
             font-weight: 700;
             color: var(--button-accent); 
             text-align: center;
@@ -289,106 +288,35 @@
             width: 0; 
         }
         
-        /* 圖片容器：用於淡入上浮及疊加偽元素 */
-        #result-image-container a {
-            display: block; 
-            opacity: 0; 
-            animation: fadeInSlideUp 0.6s ease-out 0.2s forwards; 
-            position: relative; 
-        }
-        
-        #result-image-container {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        /* 網頁版圖片寬度 */
-        #result-img {
-            display: inline-block; 
-            max-width: 400px; 
-            width: 65%; /* 網頁版寬度 */
-            height: auto; 
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            vertical-align: top;
-            
-            /* 圖片揭示動畫 */
-            animation: starReveal 3s ease-out 0.8s forwards; 
-            filter: blur(10px); 
-            opacity: 0.1; 
-            transform: scale(1.05); 
-        }
-
-        /* 網頁版偽元素 (霧面) 定位與尺寸 */
-        #result-image-container a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 400px;
-            width: 65%; /* 網頁版寬度與圖片同步 */
-            height: 100%;
-            border-radius: 10px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%); 
-            background-size: 150px 150px; 
-            opacity: 0.8; 
-            animation: overlayFadeOut 3s ease-out 0.8s forwards; 
-            pointer-events: none; 
-            z-index: 1; 
-        }
-        
-        #share-instructions {
-            text-align: center;
-            margin-top: -15px; 
-            margin-bottom: 30px;
-            font-weight: 500;
-        }
-        #share-instructions p.main-share-text {
-            margin: 0;
-            padding: 8px 15px;
-            background-color: var(--secondary-bg-light); 
-            color: var(--text-dark); 
-            border-radius: 4px;
-            display: inline-block; 
-            font-size: 0.9em;
-            border: 1px solid rgba(0,0,0,0.1);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        #share-instructions p.small-cta-text {
-            margin-top: 10px; 
-            font-size: 0.8em;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.4;
-            margin-bottom: 0;
-        }
-        
         #final-text {
-            font-size: 1.15em;
+            font-size: 1.15em; /* 網頁版結果文案字體 */
             line-height: 1.8;
             text-align: center;
             color: rgba(255, 255, 255, 0.85);
             margin-bottom: 15px; 
             white-space: pre-wrap; 
         }
-
-        /* CTA 圖片連結區塊 */
-        .cta-image-link {
-            display: block;
-            width: 100%;
-            height: auto;
-            margin: 0 auto 0 auto; 
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.2s ease;
+        
+        /* 圖片和 CTA 區塊樣式 (網頁版) */
+        #result-image-container a {
+            opacity: 0; 
+            animation: fadeInSlideUp 0.6s ease-out 0.2s forwards; 
+            position: relative; 
         }
-        .cta-image-link img {
-            display: block;
-            width: 100%;
-            height: auto;
+        #result-img {
+            max-width: 400px; 
+            width: 65%; /* 網頁版圖片寬度 */
+            animation: starReveal 3s ease-out 0.8s forwards; 
+            filter: blur(10px); 
+            opacity: 0.1; 
+            transform: scale(1.05); 
         }
-
+        #result-image-container a::before {
+            max-width: 400px;
+            width: 65%; /* 網頁版偽元素寬度與圖片同步 */
+            animation: overlayFadeOut 3s ease-out 0.8s forwards; 
+        }
+        
         /* CTA 文案區塊樣式 */
         #cta-text-content {
             background-color: var(--card-bg); 
@@ -419,68 +347,93 @@
             padding-top: 20px;
             font-size: 0.95em;
             line-height: 1.6;
-            display: flex;
+            display: flex; /* 網頁版顯示 */
             flex-direction: column;
             align-items: center; 
             text-align: center; 
         }
-        #cta-text-content .cast-list strong {
-            color: var(--secondary-bg-light);
-            font-weight: 700;
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-            text-align: center;
-        }
-        #cta-text-content .cast-list .cast-item {
-             color: var(--text-muted-gray); 
-             margin-bottom: 5px; 
-        }
-        
-        /* 應用按鈕脈衝動畫 */
-        #result-page button.btn {
-            margin-top: 40px;
-            animation: buttonPulse 2s infinite ease-out 1s; /* 延遲 1s 後開始脈衝 */
-        }
-        #result-page button.btn:hover {
-            animation: none; /* 滑鼠移入時停止脈衝 */
-        }
-
-        .credits {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: 40px;
-            font-size: 0.8em;
-        }
         
         /* ==================== 手機版響應式調整 (Mobile Responsive) ==================== */
         @media (max-width: 600px) {
-            .hero-image-homepage {
-                background-size: contain; 
+            
+            .page {
+                padding: 20px; /* 縮小頁面 Padding */
             }
             
-            /* 1. CTA 文案切換為手機版 */
-            #cta-text-content p.cta-text-desktop {
-                display: none !important; 
+            /* --- 1. 首頁圖切換為方型圖片 --- */
+            .hero-image-homepage {
+                background-image: url('images/ChillGang_front_image_phone.jpg');
+                height: 300px; /* 方型高度 */
+                background-size: cover; 
+                margin-bottom: 20px;
             }
-            #cta-text-content p.cta-text-mobile {
-                display: block !important; 
-                text-align: center; 
-                font-size: 1em; 
+            .homepage-content {
+                padding: 20px;
             }
+
+            /* --- 2. 問題頁按鈕邊寬減少，字體縮小 --- */
+            #quiz-page h1 {
+                font-size: 1.6em; /* 標題縮小 */
+            }
+            .question-card p {
+                font-size: 1.1em; /* 問題字體縮小 */
+            }
+            .option-label {
+                padding: 12px 15px; /* 縮小 Padding */
+                font-size: 0.95em; /* 選項字體縮小 */
+            }
+            input[type="radio"] {
+                transform: scale(1.1); /* 稍微縮小 radio */
+            }
+
+            /* --- 3. 結果頁字體縮小符合手機閱讀 --- */
+            #result-page h2 {
+                font-size: 1.4em; /* 主標題縮小 */
+                margin-bottom: 15px;
+            }
+            #final-actor {
+                font-size: 2em; /* 演員名稱縮小 */
+                margin-bottom: 15px;
+            }
+            #final-text {
+                font-size: 1.0em; /* 結果文案縮小 */
+            }
+            
+            /* 圖片和 CTA 區塊 */
+            #result-img {
+                width: 85%; /* 圖片寬度調整 */
+            }
+            #result-image-container a::before {
+                width: 85%; /* 偽元素寬度調整 */
+            }
+            
+            #share-instructions p.main-share-text {
+                font-size: 0.85em; 
+            }
+            #share-instructions p.small-cta-text {
+                font-size: 0.75em;
+            }
+            
             #cta-text-content {
                 padding: 20px;
                 margin-bottom: 25px;
             }
 
-            /* 2. 圖片寬度調整為 85% */
-            #result-img {
-                width: 85%; 
+            /* --- 4. CTA 文案切換為手機版 (自帶 Cast List) --- */
+            #cta-text-content p.cta-text-desktop {
+                display: none !important; 
             }
-
-            /* 3. 霧面偽元素寬度調整為 85%，以完美覆蓋圖片 */
-            #result-image-container a::before {
-                width: 85%; 
+            #cta-text-content p.cta-text-mobile {
+                /* 顯示手機版文案 */
+                display: block !important; 
+                text-align: left; /* 由於文案是多行且包含列表，左對齊較合適 */
+                font-size: 1em; 
+                line-height: 1.7;
+                white-space: pre-wrap; /* 保持換行格式 */
+            }
+            /* 隱藏網頁版獨立的 Cast List 區塊，因為手機版文案已包含內容 */
+            #cta-text-content .cast-list {
+                display: none !important;
             }
         }
     </style>
@@ -545,6 +498,17 @@
 喬瑟夫精選最懂喜劇的段子✨
 最強卡司出擊！
 沒有廣告、沒有濫梗，只有純粹的喜劇品味☝🏻
+
+⟡ 演出陣容 ⟡
+音樂喜劇 ★ 哈姆 
+單口喜劇 ★ Boss
+單口喜劇 ★ 喬瑟夫
+魔法朋友喜劇演出 ★ 安妮與古德
+漫才 ★ 菜冠雙頭
+漫才 ★ 喬瑟夫&阿量
+漫才 ★ 喬瑟夫&美麗本人
+
+｜薩泰爾影音平台 獨家上架｜
             </p>
 
             <div class="cast-list">
@@ -670,7 +634,7 @@
         }
     };
 
-    // ==================== 狀態管理與函數 (修正重置動畫邏輯) ====================
+    // ==================== 狀態管理與函數 (邏輯未變動) ====================
     let currentQuestionIndex = 0;
     let scores = { "R1": 0, "R2": 0, "R3": 0, "R4": 0, "R5": 0, "R6": 0, "R7": 0 };
     const answers = new Array(QUIZ_DATA.length).fill(null); 
